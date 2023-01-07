@@ -6,5 +6,12 @@
     <div>{{ startup.description }}</div>
     <div>{{ startup.founded }}</div>
     <div>{{ startup.website }}</div>
+
+    <div class="container">
+        {% for owner in owners %}
+            <div>{{owner.name}}</div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'owner-form' startup.slug %}">ADD OWNER</a>
 </div>
 {% endblock %}

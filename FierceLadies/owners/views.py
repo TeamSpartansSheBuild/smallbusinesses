@@ -5,21 +5,22 @@ from startups.models import startupModel
 from owners.models import owner
 
 # Create your views here.
-def onwersFormView(request):
+def onwersFormView(request,slug):
+    startupName = slug
     if request. method == 'POST':
         name = request.POST['name']
         about = request.POST['about']
         positon = request.POST['position']
         mail = request.POST['mail']
-        startupName = request.POST['startupName']
+        # startupName = request.POST['startupName']
 
-        startupName = startupModel.objects.get(name=startupName)
+        startupName = startupModel.objects.get(slug=slug)
         print(startupName)
         own = owner.objects.create(startupName=startupName,name=name,about=about,
                                     position=positon,mail=mail)
         own.save()
         
-    context = {}
+    context = {'startupName':startupName}
     return render(request,'owners/ownerForm.html',context)
 
 class ownerList(ListView):

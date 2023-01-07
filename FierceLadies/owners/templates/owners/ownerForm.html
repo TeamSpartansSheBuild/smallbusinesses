@@ -3,11 +3,11 @@
 {% block content %}
 <div class="container">
     {% if user.is_authenticated %}
-    <form method="POST" action="/ownerForm">  
+    <form method="POST" action="/ownerForm/{{startupName}}">  
         {% csrf_token %}
         
         <label for="startupName">Company Name:</label><br>
-        <input type="text"  name="startupName">
+        <p>{{startupName}}</p>
         <br>
         <label for="name">Name Owner:</label><br>
         <input type="text"  name="name">

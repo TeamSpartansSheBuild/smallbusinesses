@@ -8,7 +8,13 @@
 </div>
 <hr>
 <div>
-    <img src="{% static event.image.url %}" alt="" />
+    <img _ngcontent-serverapp-c221=""
+        class="w-full parallax-img ng-star-inserted ng-lazyloaded simple-parallax-initialized"
+        alt="Growth Mantra for Financial Planner - 2023 | Event in NA | Townscript"
+        title="Growth Mantra for Financial Planner - 2023 | Online Event | Townscript"
+        src="{{event.image.url}}"
+        style="will-change: transform; transform: translate3d(0px, -17px, 0px); transition: transform 0.1s linear 0s;">
+    <!-- <img src="{% static event.image.url %}" alt="" /> -->
 </div>
 {% if event.host == user %}
 <div>
@@ -41,7 +47,7 @@
         {% csrf_token %}
         <div class="input-group">
             <input type="text" class="rounded" placeholder="Type Your Comment Here" aria-label="Search"
-                aria-describedby="search-addon" name = "comment-message" />
+                aria-describedby="search-addon" name="comment-message" />
             <input type="submit" value="Post Comment" class="btn btn-outline-primary" />
         </div>
     </form>

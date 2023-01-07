@@ -2,6 +2,8 @@ from django.shortcuts import render
 # from .forms import startupModelForm
 from django.contrib.auth.models import User
 from .models import startupModel
+from owners.models import owner
+from owners.views import onwersFormView
 from accounts.models import EmployeeOrEmployer
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -12,20 +14,28 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def startupFormView(request):
     context ={}
+
+    user = request.user
+    if user is not None:
+        auth_login(request, user)
+        employee_or_employer = EmployeeOrEmployer.objects.filter(user=user)
+        is_employer = [i.is_employer for i in employee_or_employer]
+    
+    if is_employer == True:
  
-    if request.method == 'POST':
-        logo = request.POST['logo']
-        name = request.POST['name']
-        description = request.POST['description']
-        founded = request.POST['founded']
-        location = request.POST['location']
-        website = request.POST['website']
+        if request.method == 'POST':
+            logo = request.POST['logo']
+            name = request.POST['name']
+            description = request.POST['description']
+            founded = request.POST['founded']
+            location = request.POST['location']
+            website = request.POST['website']
 
-        user = request.user
+            user = request.user
 
-        startup = startupModel.objects.create(user=user,logo=logo,name=name,description=description,
-                                                founded=founded,location=location,website=website)
-        startup.save()
+            startup = startupModel.objects.create(user=user,logo=logo,name=name,description=description,
+                                                    founded=founded,location=location,website=website)
+            startup.save()
 
     return render(request, "startups/startupForm.html", context)
 
@@ -34,9 +44,12 @@ class startupList(ListView):
     context_object_name = 'startups'
 
 
-class startupDetail(DetailView):
-    model = startupModel
-    context_object_name = 'startup'
+def startupDetail(request,slug):
+    startup = startupModel.objects.get(slug=slug)
+    owners = owner.objects.filter(startupName=startup)
+    # onwersFormView(startup.name)
+    context = {'startup':startup,'owners':owners}
+    return render(request,'startups/startupModel_detail.html',context)
 
 @login_required
 def mystartup(request):

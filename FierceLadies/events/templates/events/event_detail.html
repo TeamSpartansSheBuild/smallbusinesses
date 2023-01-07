@@ -10,8 +10,7 @@
 <div>
     <img _ngcontent-serverapp-c221=""
         class="w-full parallax-img ng-star-inserted ng-lazyloaded simple-parallax-initialized"
-        alt="Growth Mantra for Financial Planner - 2023 | Event in NA | Townscript"
-        title="Growth Mantra for Financial Planner - 2023 | Online Event | Townscript"
+        height="100" width="200"
         src="{{event.image.url}}"
         style="will-change: transform; transform: translate3d(0px, -17px, 0px); transition: transform 0.1s linear 0s;">
     <!-- <img src="{% static event.image.url %}" alt="" /> -->
@@ -19,6 +18,7 @@
 {% if event.host == user %}
 <div>
     <a href="{% url 'event-update' event.id %}" class="btn btn-primary">Update</a>
+    <a href="{% url 'event-delete' event.id %}" class="btn btn-danger">Delete</a>    
 </div>
 {% endif %}
 <div>

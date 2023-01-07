@@ -2,6 +2,7 @@ from django.shortcuts import render
 # from .forms import startupModelForm
 from django.contrib.auth.models import User
 from .models import startupModel
+from accounts.models import EmployeeOrEmployer
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import login as auth_login,logout as auth_logout
@@ -9,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-
 def startupFormView(request):
     context ={}
  
@@ -43,10 +43,14 @@ def mystartup(request):
     user = request.user
     if user is not None:
         auth_login(request, user)
-        username = user.username
-        startups = startupModel.objects.filter(user=user)
+        employee_or_employer = EmployeeOrEmployer.objects.filter(user=user)
+        is_employer = [i.is_employer for i in employee_or_employer]
+        print(is_employer)
+        if is_employer[0] == True:
+            username = user.username
+            startups = startupModel.objects.filter(user=user)
 
-        context = {'username':username,'startups':startups}
+            context = {'username':username,'startups':startups}
     else:
         context = {}
     return render(request,'startups/mystartup.html',context)

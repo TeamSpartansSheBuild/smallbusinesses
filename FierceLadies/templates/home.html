@@ -42,6 +42,13 @@
       
       <h1 class="h-primary center"> Events </h1>
       <div id="events">
+        {% for event in events %}
+        <div class="box">
+          <img  src="{% static event.image.url %}" alt="Event2" style="border: radius 50%;">
+          <h2 class="h-secondry center" target="blank">{{event.name}}</h2>
+          <p class="center">{{event.description}}</p>
+      </div>
+        {% endfor %}
       <div class="box">
         <img src="{% static 'images/event 1.jpg' %}" alt="Event 1">
                 <h2 class="h-secondry center" target="blank">Event 1</h2>

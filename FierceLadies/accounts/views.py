@@ -72,3 +72,6 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('/')
+
+def handler404(request,exception):
+    return render(request,'404.html')

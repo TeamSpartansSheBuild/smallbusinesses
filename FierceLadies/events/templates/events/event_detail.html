@@ -1,4 +1,5 @@
 {% extends 'events/main.html' %}
+{% load static %}
 {% block body %}
 <div>
     <h1>
@@ -7,8 +8,13 @@
 </div>
 <hr>
 <div>
+    <img src="{% static event.image.url %}" alt="" />
+</div>
+{% if event.host == user %}
+<div>
     <a href="{% url 'event-update' event.id %}" class="btn btn-primary">Update</a>
 </div>
+{% endif %}
 <div>
     {{event.description}}
 </div>
@@ -21,9 +27,11 @@
     <div>
         postedby - {{comment.user}}
     </div>
+    {% if comment.user == user %}
     <div>
         <a href="{% url 'delete-comment' comment.id %}" class="btn btn-danger btn-sm">Delete</a>
     </div>
+    {% endif %}
     <hr>
     {% endfor %}
 </div>

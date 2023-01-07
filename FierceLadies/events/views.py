@@ -23,6 +23,7 @@ def eventPage(request, pk):
     context = {
         'event': event,
         'comments': comments,
+        'user' : request.user,
     }
     return render(request, 'events/event_detail.html', context)
 
@@ -57,6 +58,7 @@ def createEvent(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
         event = form.save()
+        event.host = request.user
         event.save()
         return redirect('event-detail', event.id)
     else:
@@ -68,13 +70,15 @@ def createEvent(request):
 
 
 def updateEvent(request, pk):
-    if request.method == 'POST':
+    event = Event.objects.get(id=pk)
+    if event.host != request.user:
+        return redirect('event-detail', event.id)
+    elif request.method == 'POST':
         form = EventForm(request.POST)
         event = form.save()
         event.save()
         return redirect('event-detail', event.id)
     else:
-        event = Event.objects.get(id=pk)
         form = EventForm(instance=event)
         context = {
             'event': event,

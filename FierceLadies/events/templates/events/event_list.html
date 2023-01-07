@@ -1,12 +1,25 @@
-<div>
-    <a href="{% url 'event-create' %}">Add Events</a>
-</div>
-<div>
-    {% for event in events %}
+{% extends 'events/main.html' %}
+{% block body %}
     <div>
-        <a href="{% url 'event-detail' event.id %}">{{event.name}}</a>
-        <a href="{% url 'event-update' event.id %}">Update</a>
-        <a href="{% url 'event-delete' event.id %}">Delete</a>
+        <a href="{% url 'event-create' %}">Add Events</a>
     </div>
-    {% endfor %}
+    <div>
+        <form method="GET">
+            <div class="input-group">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" name="search-area">
+                <input type="submit" value="Search" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        {% for event in events %}
+        <div>
+            <a href="{% url 'event-detail' event.id %}">{{event.name}}</a>
+            <a href="{% url 'event-update' event.id %}">Update</a>
+            <a href="{% url 'event-delete' event.id %}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+{% endblock body %}

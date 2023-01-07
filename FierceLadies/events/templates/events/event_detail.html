@@ -1,6 +1,41 @@
-<h1>
-    {{event.name}}
-</h1>
-<p>
+{% extends 'events/main.html' %}
+{% block body %}
+<div>
+    <h1>
+        {{event.name}}
+    </h1>
+</div>
+<hr>
+<div>
+    <a href="{% url 'event-update' event.id %}" class="btn btn-primary">Update</a>
+</div>
+<div>
     {{event.description}}
-</p>
+</div>
+<hr>
+<div>
+    {% for comment in comments %}
+    <div>
+        {{comment.message}}
+    </div>
+    <div>
+        postedby - {{comment.user}}
+    </div>
+    <div>
+        <a href="{% url 'delete-comment' comment.id %}" class="btn btn-danger btn-sm">Delete</a>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+<hr>
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" class="rounded" placeholder="Type Your Comment Here" aria-label="Search"
+                aria-describedby="search-addon" name = "comment-message" />
+            <input type="submit" value="Post Comment" class="btn btn-outline-primary" />
+        </div>
+    </form>
+</div>
+{% endblock body %}

@@ -10,4 +10,5 @@ urlpatterns = [
     path('',include('accounts.urls')),
     path('',include('events.urls')),
     path('',include('startups.urls')),
+    path('',include('owners.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

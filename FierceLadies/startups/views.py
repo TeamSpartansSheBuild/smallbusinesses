@@ -45,7 +45,7 @@ def mystartup(request):
         auth_login(request, user)
         employee_or_employer = EmployeeOrEmployer.objects.filter(user=user)
         is_employer = [i.is_employer for i in employee_or_employer]
-        print(is_employer)
+
         if is_employer[0] == True:
             username = user.username
             startups = startupModel.objects.filter(user=user)

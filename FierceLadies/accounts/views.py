@@ -75,3 +75,8 @@ def logout(request):
 
 def handler404(request,exception):
     return render(request,'404.html')
+
+
+def authentication(request):
+    context = {}
+    return render(request,'authentication.html',context)

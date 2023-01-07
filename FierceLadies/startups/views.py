@@ -54,3 +54,8 @@ def mystartup(request):
     else:
         context = {}
     return render(request,'startups/mystartup.html',context)
+
+
+def home(request):
+    context = {}
+    return render(request,'home.html',context)

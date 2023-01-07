@@ -4,7 +4,7 @@ from accounts import views
 urlpatterns = [
     path('EmployeeSignup',views.epySignup,name='epySignup'),
     path('EmployerSignup',views.epyrSignup,name='epyrSignup'),
-    path('login',views.login,name='login'),
-    path('logout',views.logout,name='logout'),
+    path('login/',views.login,name='login'),
+    path('logout/',views.logout,name='logout'),
     path('authentication',views.authentication,name='authentication'),
 ]

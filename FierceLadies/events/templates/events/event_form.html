@@ -1,8 +1,43 @@
-<div>
-    <form method="POST">
+{% extends 'events/main.html' %}
+{% block body %}
+<div class="container">
+    <form method="POST" class="row g-3">
         {% csrf_token %}
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Name</label>
+            <input type="text" class="form-control" id="inputName" name="name" value="{{event.name}}">
+        </div>
+        <div class="col-12">
+            <label for="inputDescription" class="form-label">Description</label>
+            <textarea type="text" class="form-control" id="inputDescription" placeholder="About Your Event"
+                name="description" value="{{event.description}}">
+        </textarea>
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Location</label>
+            <input type="text" class="form-control" id="inputLocation" placeholder="1234 Main St" name="location"
+                value="{{event.location}}">
+        </div>
+        <div class="col-md-6">
+            <label for="inputAddress2" class="form-label">Start Time</label>
+            <input type="datetime-local" class="form-control" id="inputStartTime"
+                placeholder="Apartment, studio, or floor" name="start_time" value="{{event.start_time}}">
+        </div>
+        <div class="col-md-6">
+            <label for="inputAddress2" class="form-label">End Time</label>
+            <input type="datetime-local" class="form-control" id="inputEndTime"
+                placeholder="Apartment, studio, or floor" name="end_time" value="{{event.end_time}}">
+        </div>
+        {% if event %}
 
-        {{form.as_p}}
-        <input type="submit" value="Create" />
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+        {% endif %}
     </form>
 </div>
+{% endblock body %}

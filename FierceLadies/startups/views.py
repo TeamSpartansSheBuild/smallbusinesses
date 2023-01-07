@@ -9,7 +9,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import login as auth_login,logout as auth_logout
 from django.contrib.auth.decorators import login_required
-
+from events.models import Event
 
 # Create your views here.
 def startupFormView(request):
@@ -70,5 +70,8 @@ def mystartup(request):
 
 
 def home(request):
-    context = {}
+    events = Event.objects.all()
+    context = {
+        'events' : events,
+    }
     return render(request,'home.html',context)

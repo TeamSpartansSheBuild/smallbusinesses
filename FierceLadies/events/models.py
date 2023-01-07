@@ -10,6 +10,7 @@ class Event(models.Model):
     description = models.TextField(null = True, blank = True)
     start_time = models.DateTimeField(auto_now_add=True)
     end_time = models.DateTimeField(null = True, blank = True)
+    image = models.ImageField(default='default.jpg', upload_to='event_images')
 
     def __str__(self):
         return self.name

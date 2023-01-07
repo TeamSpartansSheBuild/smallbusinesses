@@ -6,4 +6,5 @@ urlpatterns = [
     path('EmployerSignup',views.epyrSignup,name='epyrSignup'),
     path('login',views.login,name='login'),
     path('logout',views.logout,name='logout'),
+    path('authentication',views.authentication,name='authentication'),
 ]

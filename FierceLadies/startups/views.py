@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 def startupFormView(request):
     context ={}
 
-    user = request.user
+    user =  request.user
     if user is not None:
         auth_login(request, user)
         employee_or_employer = EmployeeOrEmployer.objects.filter(user=user)

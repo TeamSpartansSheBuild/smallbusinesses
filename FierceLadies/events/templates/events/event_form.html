@@ -1,5 +1,7 @@
 {% extends 'events/main.html' %}
+{% load static %}
 {% block body %}
+<lint rel="stylesheet" src="{% static 'css/event_form.css' %}" />
 <div class="container">
     <form method="POST" class="row g-3">
         {% csrf_token %}

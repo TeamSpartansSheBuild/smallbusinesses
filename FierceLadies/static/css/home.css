@@ -179,3 +179,12 @@ footer {
   background-color: black;
   color: white;
 }
+
+button,input[type=submit]{
+  text-align: center;
+  display: flex;
+  border:2px solid palevioletred;
+  background-color: black;
+  border-radius:20px;
+ 
+}

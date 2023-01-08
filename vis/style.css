@@ -4,12 +4,12 @@ margin: 0;
 box-sizing: border-box;
 }
 
-body {
+/* body {
     display: flex;
     justify-content: center;
     align-items: center;
     background: -webkit-linear-gradient(left, rgb(235, 18, 173) , rgb(174, 29, 218));
-}
+} */
 .container {
     width: 40vw;
     height: 60vh;

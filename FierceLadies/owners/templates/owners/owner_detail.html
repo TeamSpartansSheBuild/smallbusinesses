@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/ownerdetail.css' %}">
+{% endblock style %}
+
 {% block content %}
 <div class="container">
-    <div>{{ owner.startupName }}</div>
-    <div>{{ owner.name }}</div>
-    <div>{{ owner.about }}</div>
-    <div>{{ owner.position }}</div>
-    <div>{{ owner.mail }}</div>
+    <form>
+        <!-- <div><img src="{{owner.ownImage.url}}" alt="owner-image"></div> -->
+        <div class="content">{{ owner.startupName }}</div>
+        <div class="content">{{ owner.name }}</div>
+        <div class="content">{{ owner.about }}</div>
+        <div class="content">{{ owner.position }}</div>
+        <div class="content">{{ owner.mail }}</div>
+    </form>
 </div>
 {% endblock %}

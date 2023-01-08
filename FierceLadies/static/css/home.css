@@ -67,6 +67,7 @@ body {
   position: relative;
   display: flex;
   height: 500px;
+  margin-top: 1em;
 }
 
 .searchTerm {

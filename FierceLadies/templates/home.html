@@ -21,10 +21,14 @@
     <div class="topnav">
       <img id="logo" src="{% static 'images/logo.jpeg' %}" alt="logo"></a>
       <div class="topnav-right">
-        <a class="active" href="{% url 'home' %}">Home</a>
         <a href="{% url 'startupList' %}">Startups</a>
         <a href="{% url 'events' %}">Events</a>
+        <a class="active" href="{% url 'home' %}">Home</a>
         {% if user.is_authenticated %}
+          {% if is_employer %}
+            <a href="{% url 'startupFormView' %}">Add Startup</a>
+            <a href="{% url 'event-create' %}">Add Event</a>
+          {% endif %}
           <a href="{% url 'profile' %}">Profile</a>
           <a href="{% url 'logout' %}">Logout</a>
         {% else %}
@@ -36,17 +40,20 @@
     </div>
     <!--Search Bar-->
     <div class="wrap">
-      <div class="search">
-        <input type="text" class="searchTerm" placeholder="Search">
-        <button type="submit" class="searchButton">
-          <i class="fa fa-search"></i>
-        </button>
+      <div class="search" style="margin-top:1em">
+        <form method="GET" action="{%url 'search' %}">
+          <div style="display:flex;" >
+              <input type="text" class="searchTerm" placeholder="Search" name="query" style="width: 28vw;" />
+              <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+              </button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
   <section id="home">
     <p id="p1">WE HELP YOU BUILD BUSINESS</p>
-    <!--  <p id="p2" style ="height:300px;">You dream… We make it come true.</p>   -->
   </section>
   <section id="events-container">
 

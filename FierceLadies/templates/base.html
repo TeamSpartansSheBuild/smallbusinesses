@@ -17,8 +17,29 @@
 
 <body>
 
+    <!--Navigation Bar-->
+    <div class="topnav">
+        <img id="logo" src="{% static 'images/logo.jpeg' %}" alt="logo"></a>
+        <div class="topnav-right">
+            <a href="{% url 'startupList' %}">Startups</a>
+            <a href="{% url 'events' %}">Events</a>
+            <a class="active" href="{% url 'home' %}">Home</a>
+            {% if user.is_authenticated %}
+            {% if is_employer %}
+            <a href="{% url 'startupFormView' %}">Add Startup</a>
+            <a href="{% url 'event-create' %}">Add Event</a>
+            {% endif %}
+            <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'signup' %}">Signup</a>
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+
+        </div>
+    </div>
     <!-- # navbar -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <!-- <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">FeirceLadies</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -48,7 +69,7 @@
                 {% endif %}
             </div>
         </div>
-    </nav>
+    </nav> -->
 
 
     <div class="container card-container">

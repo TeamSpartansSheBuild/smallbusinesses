@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="container">
+        {% for owner in owners %}
+        <div class="startup-list-div">
+            <div class="logo-div">
+                <a href="{% url 'ownerDetail' owner.slug %}">
+                    <img src="{{owner.ownImage.url}}" alt="startupimg" class="logo-list">
+                </a>
+            </div>
+            <div class="name-div">
+                <a href="{% url 'ownerDetail' owner.slug %}" class="list-name">{{owner.name}}</a>
+                <p class="list-desp">{{owner.about}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        {% for startup in startups %}
+        <div class="startup-list-div">
+            <div class="logo-div">
+                <a href="{% url 'startupDetail' startup.slug %}">
+                    <img src="{{startup.logo.url}}" alt="startupimg" class="logo-list">
+                </a>
+            </div>
+            <div class="name-div">
+                <a href="{% url 'startupDetail' startup.slug %}" class="list-name">{{startup.name}}</a>
+                <p class="list-desp">{{startup.description}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="card-group">
+        {% for event in events %}
+        <div class="card" style="height: 100px;">
+            <img src="{{event.image.url}}" class="card-img-top" alt="{{event.name}}">
+            <div class="card-body">
+                <h5 class="card-title">{{event.name}}</h5>
+                <p class="card-text">{{event.description}}</p>
+                <a href="{% url 'event-detail' event.id %}" class="btn btn-primary">View</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

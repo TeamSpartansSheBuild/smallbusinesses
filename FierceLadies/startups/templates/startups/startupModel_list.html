@@ -3,7 +3,17 @@
 {% block content %}
 <div class="container">
     {% for startup in startups %}
-        <a href="{% url 'startupDetail' startup.slug %}">{{startup.name}}</a>
+        <div class="startup-list-div">
+            <div class="logo-div">
+                <a href="{% url 'startupDetail' startup.slug %}">
+                    <img src="{{startup.logo.url}}" alt="startupimg" class="logo-list">
+                </a>
+            </div>
+            <div class="name-div">
+                <a href="{% url 'startupDetail' startup.slug %}" class="list-name">{{startup.name}}</a>
+                <p class="list-desp">{{startup.description}}</p>
+            </div>            
+        </div>
     {% endfor %}
 </div>
 {% endblock %}

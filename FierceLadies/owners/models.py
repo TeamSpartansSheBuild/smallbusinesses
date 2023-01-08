@@ -11,6 +11,7 @@ POSITION_CHOICES = (
 # Create your models here.
 class owner(models.Model):
     startupName = models.ForeignKey(startupModel,on_delete=models.CASCADE)
+    ownImage = models.ImageField(default='default.jpg', upload_to='owner_images',null=True,blank=True)
     name = models.CharField(max_length=200,primary_key=True,blank=True)
     slug = models.SlugField(null=True,blank=True, unique=True)
     about = models.TextField(max_length=200,)

@@ -13,7 +13,6 @@ from events.models import Event
 
 # Create your views here.
 def startupFormView(request):
-    context ={}
 
     user =  request.user
     if user is not None:
@@ -37,6 +36,8 @@ def startupFormView(request):
                                                     founded=founded,location=location,website=website)
             startup.save()
 
+    context={'is_employer':is_employer}
+
     return render(request, "startups/startupForm.html", context)
 
 class startupList(ListView):
@@ -47,7 +48,19 @@ class startupList(ListView):
 def startupDetail(request,slug):
     startup = startupModel.objects.get(slug=slug)
     owners = owner.objects.filter(startupName=startup)
-    # onwersFormView(startup.name)
+
+    user =  request.user
+    if user is not None:
+        try:
+            auth_login(request, user)
+            employee_or_employer = EmployeeOrEmployer.objects.filter(user=user)
+            is_employer = [i.is_employer for i in employee_or_employer]
+            if is_employer:
+                context = {'startup':startup,'owners':owners,'is_employer':is_employer[0]}
+                return render(request,'startups/startupModel_detail.html',context)
+        except:
+            pass
+
     context = {'startup':startup,'owners':owners}
     return render(request,'startups/startupModel_detail.html',context)
 

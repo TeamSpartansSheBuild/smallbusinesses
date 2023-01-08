@@ -84,7 +84,9 @@ def mystartup(request):
 
 def home(request):
     events = Event.objects.all()
+    startups = startupModel.objects.all()
     context = {
         'events' : events,
+        'startups': startups,
     }
     return render(request,'home.html',context)

@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/startups.css' %}">
+  
   <link rel="stylesheet" media="screen and (max-width:1170)" href="phone.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
@@ -47,6 +49,26 @@
     </div>
 
   </section>
+
+  <h1 class="h-primary center"> Startups </h1>
+  <div class="container">
+    {% for startup in startups|slice:":4" %}
+    <div class="startup-list-div">
+      <div class="logo-div">
+        <a href="{% url 'startupDetail' startup.slug %}">
+          <img src="{{startup.logo.url}}" alt="startupimg" class="logo-list">
+        </a>
+      </div>
+      <div class="name-div">
+        <a href="{% url 'startupDetail' startup.slug %}" class="list-name">{{startup.name}}</a>
+        <p class="list-desp">{{startup.description}}</p>
+      </div>
+    </div>
+    {% endfor %}
+    <a href="{% url 'startupList' %}" style="font-size:2em;display:flex;justify-content:center">see more...</a>
+  </div>
+
+
   <section id="About Us-container">
     <div id="about">
       <h1 style="padding: 3rem; font-size:30px; font-family:'Times New Roman', Times, serif;">About Us</h1>

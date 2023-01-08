@@ -37,10 +37,14 @@
     <!--Search Bar-->
     <div class="wrap">
       <div class="search">
-        <input type="text" class="searchTerm" placeholder="Search">
-        <button type="submit" class="searchButton">
-          <i class="fa fa-search"></i>
-        </button>
+        <form method="GET" action="{%url 'search' %}">
+          <div style="display: flex;">
+            <input type="text" name="query" class="searchTerm" placeholder="Search" />
+            <button type="submit" class="searchButton">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -52,7 +56,7 @@
 
     <h1 class="h-primary center"> Events </h1>
     <div id="events">
-      {% for event in events %}
+      {% for event in events|slice:"1:4" %}
       <div class="box">
         <img src="{% static event.image.url %}" alt="Event2" style="border: radius 50%;">
         <h2 class="h-secondry center" target="blank">{{event.name}}</h2>
@@ -68,12 +72,6 @@
       <div class="box">
         <img src="{% static 'images/event 2.jpg' %}" alt="Event2" style="border: radius 50%;">
         <h2 class="h-secondry center" target="blank">Event 2</h2>
-        <p class="center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga impedit consequatur,
-          veritatis non tempore facilis naaj necessitatibus. Mollitia itaque culpa magnam quis.</p>
-      </div>
-      <div class="box">
-        <img src="{% static 'images/event 3.jpg' %}" alt="Event 3">
-        <h2 class="h-secondry center">Event 3</h2>
         <p class="center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga impedit consequatur,
           veritatis non tempore facilis naaj necessitatibus. Mollitia itaque culpa magnam quis.</p>
       </div>

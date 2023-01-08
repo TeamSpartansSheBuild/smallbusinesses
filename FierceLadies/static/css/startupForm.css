@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: -webkit-linear-gradient(left, red, pink);
+} */
+form {
+    /* margin: 10vh 20vw; */
+    padding: 3em;
+    border: 2px solid gray;
+    border-radius: 10px;
+    display: inline-table;
+    background-color: aliceblue;
+}
+
+.element {
+    margin: 2vw;
+}
+
+.elementLable {
+    margin: 2vw, 2vw, 1vw, 2vw;
+}
+
+.form-inline {
+    margin-left: 28vw;
+    font-size: 7vh;
+}
+
+.Url {
+    margin-left: 28vw;
+    font-size: 5vh;
+}
+
+.Head {
+    font-size: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+.HeadO {
+    display: flex;
+    font-size: 2em;
+    margin-top: 3vh;
+    /* margin: auto; */
+    justify-content: center;
+
+}

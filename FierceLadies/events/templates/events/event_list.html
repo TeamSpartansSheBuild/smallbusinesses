@@ -1,27 +1,33 @@
 {% extends 'events/main.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/event_list.css' %}">
+{% endblock head %}
+
 {% block body %}
-<div>
-    <a href="{% url 'event-create' %}" class="btn btn-outline-success btn-sm">Add New Event</a>
+<div style="padding:2rem">
+    <a style="margin:33% 40%; font-size:1.5rem;text-align:center; background-color:pink; border:2px solid purple;justify-content: center; padding:1.5rem; font-size:30px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" href="{% url 'event-create' %}" class="btn btn-outline-success btn-sm">Add New Event</a>
 </div>
 <div>
     <form method="GET">
         <div class="input-group">
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                aria-describedby="search-addon" name="search-area" value="{{search_area}}">
-            <input type="submit" value="Search" class="btn btn-outline-primary" />
+                aria-describedby="search-addon" name="search-area" value="{{search_area}}" style="height:20px; width:50%;padding:1.5rem;margin:50px 25%;border:2px solid purple; border-radius:20px;">
+            <input type="submit" style="margin:0px 47%;color:white;" value="Search" class="btn btn-outline-primary" />
         </div>
     </form>
 </div>
-<div class="card-group">
+<div  style="padding:1.5rem;"class="card-group">
     {% for event in events %}
-    <div class="card" style="height: 100px;">
-        <img src="{{event.image.url}}" class="card-img-top" alt="{{event.name}}">
+    <div style="padding:1.5rem;" class="card" style="height: 100px;">
+        <img style="display:flex;justify-content: center; margin:3px,50%;border:2px solid purple;" src="{{event.image.url}}" class="card-img-top" alt="{{event.name}}" height="100">
         <div class="card-body">
-            <h5 class="card-title">{{event.name}}</h5>
+            <h5 style="text-align:center;justify-content: center;font-size: large;" class="card-title">{{event.name}}</h5>
             <p class="card-text">{{event.description}}</p>
-            <a href="{% url 'event-detail' event.id %}" class="btn btn-primary">View</a>
+         <button>   <a style="color:white;" href="{% url 'event-detail' event.id %}" class="btn btn-primary">View</a></button>
         </div>
     </div>
+    <hr>
     {% endfor %}
 </div>
 </div>

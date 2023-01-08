@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="Container">
+        <form id="Login">
+            <div class="LoginHead">Login</div>
+            <input id="UserName" placeholder="USER NAME" >
+            <input id="Password" placeholder="PASSWORD" >
+            <p id="forgotPassword" href="#">Forgot Password ? Click Her</p>
+            <div class="btn">  
+            <button id="LoginBtn">LOGIN</button>
+            <button onclick="SignUp()">SIGNUP</button>
+            </div>
+        </form>
+  
+        <div class="EmployeeSingUp">
+            <div class="EmpoloyeeSignUpHead">Employee SignUp</div>
+            <input id="SignUpUserName" placeholder="Enter User Name" required>
+            <input type="email" id="Email" placeholder="Enter Email Id">
+            <input type="tel"  id="MobileNO" placeholder="Enter Mobile Number">
+            <input id="SignUpPassword" placeholder="Enter Password">
+            <input id="CheckPassword" placeholder="Re-enter Password">
+            <div class="btn"> 
+            <button id="EmployeeSignUP">SignUp as Employee</button>
+            <button id="EmployerSignUp">SignUp as Employer</button>
+            <button id="Loginpage" onclick="LoginPage()">Login Page</button>
+            </div>
+        </div>
+    </div>
+<script>
+var t = true ;
+function SignUp() { 
+     t= false; 
+}
+function LoginPage() {
+     t = true;
+}
+if (t === true){ 
+const element =document.getElementById('Login');
+element.style.marginLeft = '20vw';
+}
+else {
+const element = document .getElementById('Login');
+element.style.marginLeft = '-70vw';
+}
+
+</script>
+</body>
+
+</html>

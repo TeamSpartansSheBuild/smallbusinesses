@@ -71,7 +71,7 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect('/')
+    return redirect('home')
 
 def handler404(request,exception):
     return render(request,'404.html')
@@ -84,3 +84,7 @@ def authentication(request):
 def signup(request):
     context = {}
     return render(request,'accounts/signup.html',context)
+
+def profile(request):
+    context = {}
+    return render(request,'profile.html',context)

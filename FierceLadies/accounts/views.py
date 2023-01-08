@@ -22,7 +22,7 @@ def epySignup(request):   # employee signup
     # events = Event.objects.all()
     context = {'events':'events'}
 
-    return render(request, 'accounts/epySignup.html', context)
+    return render(request, 'accounts/signup.html', context)
 
 
 def epyrSignup(request): ## employer sigup
@@ -43,7 +43,7 @@ def epyrSignup(request): ## employer sigup
     # events = Event.objects.all()
     context = {'events':'events'}
 
-    return render(request, 'accounts/epyrSignup.html', context)
+    return render(request, 'accounts/signup.html', context)
 
 
 def login(request):
@@ -80,3 +80,7 @@ def handler404(request,exception):
 def authentication(request):
     context = {}
     return render(request,'authentication.html',context)
+
+def signup(request):
+    context = {}
+    return render(request,'accounts/signup.html',context)

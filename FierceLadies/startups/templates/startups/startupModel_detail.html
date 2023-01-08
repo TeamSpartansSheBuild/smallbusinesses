@@ -2,16 +2,35 @@
 
 {% block content %}
 <div class="container">
-    <div>{{ startup.name }}</div>
-    <div>{{ startup.description }}</div>
-    <div>{{ startup.founded }}</div>
-    <div>{{ startup.website }}</div>
+    <div class="detail-div">
+        <div><img src="{{ startup.logo.url }}" alt="starup-logo"></div>
+        <div class="detail-name">{{ startup.name }}</div>
+        <label for="">Description:</label>
+        <p>{{ startup.description }}</p>
+        <label for="">Founded:</label>
+        <p>{{ startup.founded }}</p>
+        <label for="">Location:</label>
+        <p>{{ startup.location }}</p>
+        <label for="">Website:</label>
+        <p>{{ startup.website }}</p>
+    </div>
 
     <div class="container">
+        <p>Peoples:</p>
         {% for owner in owners %}
-            <div>{{owner.name}}</div>
+            <div class="container owner-div">
+                <div><a href="{% url 'ownerDetail' owner.slug %}"><img src="{{owner.ownImage.url}}" alt="photo"></a></div>
+                <div class="owner-detail-div">
+                    <p><a href="{% url 'ownerDetail' owner.slug %}">{{owner.name}}</a></p>
+                    <label for="">Position:</label>
+                    <p>{{owner.position}}</p>  
+                </div>              
+            </div>
         {% endfor %}
     </div>
-    <a href="{% url 'owner-form' startup.slug %}">ADD OWNER</a>
+    <div>{{is_employer}}</div>
+    {% if user.is_authenticated and is_employer %}
+        <a href="{% url 'owner-form' startup.slug %}">ADD OWNER</a>
+    {% endif %}
 </div>
 {% endblock %}

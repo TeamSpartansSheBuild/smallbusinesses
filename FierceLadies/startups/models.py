@@ -6,7 +6,7 @@ from django.template.defaultfilters import slugify
 # Create your models here.
 class startupModel(models.Model):
     user = models.ForeignKey(User,null=True,on_delete=models.SET_NULL)
-    logo = models.ImageField(null=True,blank=True)
+    logo = models.ImageField(default='default.jpg', upload_to='startup_images',null=True,blank=True)
     name = models.CharField(max_length=50,unique=True,null=False,blank=False)
     description = models.TextField(max_length=500,null=True,blank=True)
     founded = models.IntegerField(null=False,blank=False)

@@ -10,6 +10,8 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth import login as auth_login,logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from events.models import Event
+from django.db.models import Q
+
 
 # Create your views here.
 def startupFormView(request):
@@ -85,8 +87,38 @@ def mystartup(request):
 def home(request):
     events = Event.objects.all()
     startups = startupModel.objects.all()
+
+    is_employer = False
+    user =  request.user
+    if user is not None:
+        try:
+            auth_login(request, user)
+            employee_or_employer = EmployeeOrEmployer.objects.filter(user=user)
+            is_employer = [i.is_employer for i in employee_or_employer]
+        except:
+            pass
+    
     context = {
         'events' : events,
         'startups': startups,
+        'is_employer':is_employer,
     }
     return render(request,'home.html',context)
+
+
+def search(request):
+
+    query = request.GET['query']
+    print(query)
+
+    if len(query) <2 or len(query) > 50:
+        query = []
+    else:
+        events = Event.objects.filter(Q(name__icontains=query) | Q(location__icontains=query))
+        startups = startupModel.objects.filter(Q(name__icontains=query) | Q(location__icontains=query))
+        own = owner.objects.filter(Q(name__icontains=query))                           
+
+
+    context = {'owners':own,'events':events,'startups':startups,'query':query}
+    print(context)
+    return render(request,'search.html',context)

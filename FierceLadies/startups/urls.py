@@ -7,5 +7,5 @@ urlpatterns = [
     path('startup/<slug:slug>',views.startupDetail,name='startupDetail'),
     path('mystartup',views.mystartup,name='mystartup'),
     path('',views.home,name='home'),
-    
+    path('search',views.search,name='search'),
 ]

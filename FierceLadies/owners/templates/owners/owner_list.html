@@ -3,7 +3,17 @@
 {% block content %}
 <div class="container">
     {% for owner in owners %}
-        <a href="{% url 'ownerDetail' owner.slug %}">{{owner.name}}</a>
+        <div class="startup-list-div">
+            <div class="logo-div">
+                <a href="{% url 'ownerDetail' owner.slug %}">
+                    <img src="{{owner.ownImage.url}}" alt="startupimg" class="logo-list">
+                </a>
+            </div>
+            <div class="name-div">
+                <a href="{% url 'ownerDetail' owner.slug %}" class="list-name">{{owner.name}}</a>
+                <p class="list-desp">{{owner.about}}</p>
+            </div>            
+        </div>
     {% endfor %}
 </div>
 {% endblock %}

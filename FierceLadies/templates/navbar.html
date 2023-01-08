@@ -1,0 +1,28 @@
+{% load static %}
+
+<section id="navbar">
+    <!--Navigation Bar-->
+    <div class="topnav">
+      <img id="logo" src="{% static 'images/logo.jpeg' %}" alt="logo"></a>
+      <div class="topnav-right">
+        <a class="active" href="{% url 'home' %}">Home</a>
+        <a href="{% url 'startupList' %}">Startups</a>
+        <a href="{% url 'events' %}">Events</a>
+        <a href="#Profile">Profile</a>
+
+      </div>
+    </div>
+    <!--Search Bar-->
+    <div class="wrap">
+      <div class="search">
+        <input type="text" class="searchTerm" placeholder="Search">
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+  <section id="home">
+    <p id="p1">WE HELP YOU BUILD BUSINESS</p>
+    <!--  <p id="p2" style ="height:300px;">You dream… We make it come true.</p>   -->
+  </section>

@@ -1,50 +1,35 @@
 {% extends 'events/main.html' %}
 {% load static %}
-{% block head %}
-    <link rel="stylesheet" href="{% static 'css/events.css' %}">
-{% endblock head %}
 {% block body %}
-<section id="navbar">
-    <!--Navigation Bar-->
-    <div class="topnav">
-        <img id="logo" src="logo.jpeg" alt="logo"></a>
-        <div class="topnav-right">
-            <a  href="#home">Home</a>
-        <a href="{% url 'startupList' %}">Startups</a>
-        <a class="active"  href="{% url 'events' %}">Events</a>
-          <a href="#Profile">Profile</a>
-          
-        </div>
-      </div>
-      </section>
+<link rel="stylesheet" href="{% static 'css/events.css' %}">
 <div class="eventname">
     <h1>
         {{event.name}}
     </h1>
 </div>
 <hr>
-<div >
+<div>
     <img class="event-image" style="margin: 30px 45%;" _ngcontent-serverapp-c221=""
-        class="w-full parallax-img ng-star-inserted ng-lazyloaded simple-parallax-initialized"
-        height="100" width="200"
+        class="w-full parallax-img ng-star-inserted ng-lazyloaded simple-parallax-initialized" height="100" width="200"
         src="{{event.image.url}}"
         style="will-change: transform; transform: translate3d(0px, -17px, 0px); transition: transform 0.1s linear 0s;">
     <!-- <img src="{% static event.image.url %}" alt="" /> -->
 </div>
 {% if event.host == user %}
 <div>
-  <button>  <a style="color: white;" href="{% url 'event-update' event.id %}" class="btn btn-primary">Update</a></button><br>
-  <button> <a  style="color: white;" href="{% url 'event-delete' event.id %}" class="btn btn-danger">Delete</a>  </button>  
+    <button> <a style="color: white;" href="{% url 'event-update' event.id %}">Update</a></button><br>
+    <button> <a style="color: white;" href="{% url 'event-delete' event.id %}">Delete</a>
+    </button>
 </div>
 {% endif %}
 <div>
     <p>
-        <div>
-            Start Time : {{event.start_time}}
-        </div>
-        <div>
-            End Time : {{event.end_time}}
-        </div>
+    <div>
+        Start Time : {{event.start_time}}
+    </div>
+    <div>
+        End Time : {{event.end_time}}
+    </div>
     </p>
 </div>
 <hr>
@@ -62,7 +47,8 @@
     </div>
     {% if comment.user == user %}
     <div>
-        <button>     <a  style="color: white;"href="{% url 'delete-comment' comment.id %}" class="btn btn-danger btn-sm">Delete</a> </button> 
+        <button> <a style="color: white;" href="{% url 'delete-comment' comment.id %}"
+                class="btn btn-danger btn-sm">Delete</a> </button>
     </div>
     {% endif %}
     <hr>
@@ -73,7 +59,7 @@
     <form method="POST">
         {% csrf_token %}
         <div class="input-group">
-            <input type="text" class="rounded"  rows=30 col=10 placeholder="Type Your Comment Here" aria-label="Search"
+            <input type="text" class="rounded" rows=30 col=10 placeholder="Type Your Comment Here" aria-label="Search"
                 aria-describedby="search-addon" name="comment-message" style="padding: 1.5rem;" />
             <input type="submit" style="color: white;" value="Post Comment" class="btn btn-outline-primary" />
         </div>
